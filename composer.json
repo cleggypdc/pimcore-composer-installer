@@ -1,0 +1,22 @@
+{
+  "name": "cleggypdc/pimcore-composer-installer",
+  "type": "library",
+  "description": "A library to enable Pimcore 5+ to be installed as a composer dependancy - inspired by original Pimcore 3/4 implementation by elliot@elliotwright.co",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Paul Clegg",
+      "email": "paul@gatherdigital.co.uk"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Cleggypdc\\Pimcore\\Composer\\": "src/"
+    }
+  },
+  "extra": {
+    "class": "Cleggypdc\\Pimcore\\Composer\\Installer"
+  }
+}
