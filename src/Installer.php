@@ -46,8 +46,12 @@ class Installer
             $this->filesystem->ensureDirectoryExists($correctPath);
 
             if (!$this->filesystem->isSymlinkedDirectory($srcPath)){
-                // copy the src directory if the correct path exists and the src remains
-                $this->filesystem->copyThenRemove($srcPath, $correctPath);
+                // copy the src directory if the correct path is empty
+                if ($this->filesystem->isDirEmpty($correctPath)) {
+                    $this->filesystem->copyThenRemove($srcPath, $correctPath);
+                } else {
+                    $this->filesystem->removeDirectory($srcPath);
+                }
                 symlink($correctPath, $srcPath);
             }
         }
