@@ -34,7 +34,7 @@ class Installer
             'app', //The application configuration, templates and translations
             'src', // the project's PHP code (Services, Controllers EventListeners ..)
             'var', // Private generated files - not accessible via the web (cache, logs etc)
-            'web' // public files
+            'web' // public files - some from Pimcore
         ];
 
         foreach($movePaths as $path) {
@@ -46,8 +46,8 @@ class Installer
             $this->filesystem->ensureDirectoryExists($correctPath);
 
             if (!$this->filesystem->isSymlinkedDirectory($srcPath)){
-                // copy the src directory if the correct path is empty
-                if ($this->filesystem->isDirEmpty($correctPath)) {
+                // copy the src directory if the correct path is empty OR is the web directory
+                if ($this->filesystem->isDirEmpty($correctPath) || $path === 'web') {
                     $this->filesystem->copyThenRemove($srcPath, $correctPath);
                 } else {
                     $this->filesystem->removeDirectory($srcPath);
